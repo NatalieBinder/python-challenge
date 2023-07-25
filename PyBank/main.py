@@ -10,7 +10,7 @@ csvpath = os.path.join('Resources', 'budget_data.csv')
 
 months_list=[]
 print("Financial Analysis")
-print("______________")
+print("-----------------")
 
 # Method 2: Improved Reading using CSV module
 
@@ -31,7 +31,7 @@ with open(csvpath) as csvfile:
     greatest_decrease = ["",-10000]
     # Read each row of data after the header
     for row in csvreader:
-        total = total + int(row[1])
+        total += int(row[1])
         change=int(row[1])-prev_row
         change_list.append(change)
         months_list.append(row[0])
@@ -43,8 +43,24 @@ with open(csvpath) as csvfile:
             greatest_decrease[1]=change
             greatest_decrease[0]=row[0]
     avg = np.round(sum(change_list)/len(change_list),2)
-    print("Total: $" + str(total)) 
-print("Total Months: " + str(len(months_list)+1) )
-print("Average Change: $" + str(avg))
-print("Greatest Increase in Profits: " + str(greatest_increase))
-print("Greatest Decrease in Profits: " + str(greatest_decrease))
+#    print("Total: $" + str(total)) 
+#print("Total Months: " + str(len(months_list)+1) )
+#print("Average Change: $" + str(avg))
+#print("Greatest Increase in Profits: " + str(greatest_increase))
+#print("Greatest Decrease in Profits: " + str(greatest_decrease))
+outputpath = os.path.join('analysis', 'budget_analysis.txt')
+with open(outputpath, "w") as outputfile:
+    output1 = (f"Financial Analysis\n"
+    f"-------------------------\n"
+    f"Total Months: {len(months_list) + 1}\n"
+    f"Total: ${total}\n"
+    f"Average Change: ${avg}\n"
+    f"Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})\n"
+    f"Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n"
+    )#Total: $22564198
+#Average Change: $-8311.11
+#Greatest Increase in Profits: Aug-16 ($1862002)
+#Greatest Decrease in Profits: Feb-14 ($-1825558)
+
+    print(output1)
+    outputfile.write(output1)
