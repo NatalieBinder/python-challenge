@@ -43,11 +43,7 @@ with open(csvpath) as csvfile:
             greatest_decrease[1]=change
             greatest_decrease[0]=row[0]
     avg = np.round(sum(change_list)/len(change_list),2)
-#    print("Total: $" + str(total)) 
-#print("Total Months: " + str(len(months_list)+1) )
-#print("Average Change: $" + str(avg))
-#print("Greatest Increase in Profits: " + str(greatest_increase))
-#print("Greatest Decrease in Profits: " + str(greatest_decrease))
+
 outputpath = os.path.join('analysis', 'budget_analysis.txt')
 with open(outputpath, "w") as outputfile:
     output1 = (f"Financial Analysis\n"
@@ -57,10 +53,6 @@ with open(outputpath, "w") as outputfile:
     f"Average Change: ${avg}\n"
     f"Greatest Increase in Profits: {greatest_increase[0]} (${greatest_increase[1]})\n"
     f"Greatest Decrease in Profits: {greatest_decrease[0]} (${greatest_decrease[1]})\n"
-    )#Total: $22564198
-#Average Change: $-8311.11
-#Greatest Increase in Profits: Aug-16 ($1862002)
-#Greatest Decrease in Profits: Feb-14 ($-1825558)
-
+    )
     print(output1)
     outputfile.write(output1)
